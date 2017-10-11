@@ -12,6 +12,7 @@ from plan.models import Progress as Prog
 from plan.forms import ProgressForm
 from plan.Output import *
 import json
+import re
 
 #the function executes with the make_plan url to take the inputs 
 def make_plan(request):
@@ -232,6 +233,34 @@ def CheckProgress(request):
     #Now, Build a dummy Python Dictionary and convert it to a JSON object with the intent of passing it along to the render function
     # dictexample = {'children':[{'children':[{'children':[],'data':{'description':'algebra l.o.1','$angularWidth':1000,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Classify Poly', 'name':'Classify Poly'},{'children':[],'data':{'description':'algebra l.o.2','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Factoriz * Poly','name':'Factorize * Poly'}],'data':{'description':'algebra chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Algebra','name':'Algebra'},{'children':[{'children':[],'data':{'description':'Stat l.o.1','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Statistics/Stat Graphs', 'name':'Stat. Graphs'}],'data':{'description':'Statistics chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Statistics','name':'Statistics'}],'data':{'$type':'none'},'id':'Source','name':'Grade 9 Math'}
     
+    #Build the cumulative list of learning outcomes fo students from start of term - Data comes from Progress table and has marks alloted by the teacher as well
+    # standard = request.GET.get('Standard')
+    # name = request.GET.get('Name')
+    standard = "7th"
+    name = "Muralidharan"
+    N = 7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    weekly_progress = Prog.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
+    
+    for iterator in weekly_progress:
+        progress_string = iterator.Outcomes
+        
+    Assessment_Marks_list = iterator.Assessment_Marks.split(',')
+    progress_list=progress_string.split("],")[:-1]
+    cumulative_list=[]
+
+    for each in progress_list:
+        temp=each.split(';;',1)
+        chapter=re.sub('^\s+','',temp[0])
+        outcomes=temp[1].split('\r\n')
+        for i in range(len(outcomes)):
+            cumulative_list.append([chapter,outcomes[i]])
+    
+    for i in range(len(Assessment_Marks_list)):
+            cumulative_list[i].extend(Assessment_Marks_list[i])
+    print(cumulative_list)       
+    
+
 
     #Convert data_7th (as an example) to JSON object
     learn_outcome_dict=[]
@@ -249,6 +278,7 @@ def CheckProgress(request):
 
     #Convert dictionary to JSON Object
     dictionarytoJson = json.dumps(final_dict)
+
     #print("dictToJson",dictionarytoJson)
     return render(request, 'plan/checkProgress.html', {'unique_list': unique_list,'json_object':dictionarytoJson})
 
