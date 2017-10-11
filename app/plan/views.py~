@@ -1,0 +1,160 @@
+from django.shortcuts import render
+from datetime import datetime, timedelta
+from django.utils import timezone
+from plan.forms import PostForm
+from plan.models import Post1
+from plan.models import allstudent
+from plan.models import Update
+from plan.forms import UpdateForm
+from plan.models import Update1
+from plan.forms import Update1Form
+#the function executes with the make_plan url to take the inputs 
+def make_plan(request):
+    if request.method == 'POST':  # if the form has been filled
+        form = PostForm(request.POST)
+        Standard = request.POST.get('standard', '')
+        Name = request.POST.get('name', '')
+        Chapter = request.POST.get('chapter', '')
+        Goal_old1 = request.POST.getlist('goal1', '')
+        Goal_old1 = "\n".join(Goal_old1)
+        Goal_old2 = request.POST.get('goal2', '')
+        Goal_now1 = request.POST.getlist('goal3', '')
+        Goal_now1 = "\n".join(Goal_now1)
+        Goal_now2 = request.POST.get('goal4', '') 
+        Goal_now3 = request.POST.get('goal5', '') 
+        Goal_now4 = request.POST.get('goal6', '') 
+        if Standard=='' or Name =='' or Chapter=='':
+            user_obj = Post1( Standard='Grade 7th', 
+                    Name='',
+                    Chapter='',
+                    Goal_old1='',
+                    Goal_old2='', Goal_now1='',
+                    Goal_now2='', Goal_now3='',
+                    Goal_now4='')
+                    #date='')
+            return render(request, 'plan/make_plan.html', {'user_obj': user_obj,'is_registered':False }) # Redirect after POST
+        else:
+            user_obj = Post1( Standard=Standard, 
+                    Name=Name,
+                    Chapter=Chapter,
+                    Goal_old1=Goal_old1,
+                    Goal_old2=Goal_old2,Goal_now1=Goal_now1,
+                    Goal_now2=Goal_now2,Goal_now3=Goal_now3,
+                    Goal_now4=Goal_now4) # date=date)
+            # saving all the data in the current object into the database
+            user_obj.save()
+         
+            return render(request, 'plan/make_plan.html', {'user_obj': user_obj,'is_registered':True }) # Redirect after POST
+    else:
+        # form = PostForm()  # an unboundform
+        form = {}
+        return render(request, 'plan/make_plan.html', {'form': form})
+ 
+#the function executes with the showdata url to display the list of registered users
+#def showdataSpecific(request):
+ #   standard = request.GET.get('Standard')
+  #  name = request.GET.get('Name')
+#    all_plan = Post1.objects.filter(Standard=standard,Name=name)
+ #   return render(request, 'plan/showdataSpecific.html', {'all_plan': all_plan, })
+
+def showdataSpecific(request):
+    standard = request.GET.get('Standard')
+    name = request.GET.get('Name')
+    N = 7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
+    return render(request, 'plan/showdataSpecific.html', {'all_plan': all_plan, })
+
+def showdata(request):
+    all_plan = Post1.objects.all()
+    return render(request, 'plan/showdata.html', {'all_plan': all_plan, })
+def show7thGrade(request):
+    students_of_a_grade = allstudent.objects.filter(Standard="7th")
+    N =7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="7th")
+    return render(request, 'plan/showdata.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+def show8thGrade(request):
+    students_of_a_grade = allstudent.objects.filter(Standard="8th")
+    N =7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="8th")
+    return render(request, 'plan/showdata.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+
+def show9thGrade(request):
+    students_of_a_grade = allstudent.objects.filter(Standard="9th")
+    N =7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="9th")
+    return render(request, 'plan/showdata.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+
+def showdailyupdate(request):
+    all_Update = Update.objects.all()
+    return render(request, 'plan/showdailyupdate.html', {'all_Update': all_Update, })
+
+def index(request):
+    all_Update = Update.objects.all()
+    return render(request, 'plan/index.html', {'all_Update': all_Update,})
+
+#def allstudent(request):
+    #all_Update = Update.objects.all()
+    #return render(request, 'plan/allstudent.html', {'all_Update': all_Update,})
+
+
+def makedailyupdate(request):
+    if request.method == 'POST':  # if the form has been filled
+        form = UpdateForm(request.POST)
+        Standard = request.POST.get('standard', '')
+        Name = request.POST.get('name', '')
+        What_did_I_do_at_home = request.POST.get('What_did_I_do_at_home', '')
+        What_I_did_towards_my_goals = request.POST.get('What_I_did_towards_my_goals', '')
+        What_did_I_learn_new = request.POST.get('What_did_I_learn_new', '')
+           
+#        date = request.POST.get('date', '')
+        if What_I_did_towards_my_goals =='' or Standard =='' or Name =='' or What_did_I_learn_new =='':
+           user_obj = Update( Standard ='', Name ='', What_did_I_do_at_home='', What_I_did_towards_my_goals='', What_did_I_learn_new='')
+               
+           return render(request, 'plan/makedailyupdate.html', {'user_obj': user_obj,'is_registered':False }) # Redirect after POST
+        else:
+            user_obj = Update( Standard = Standard, Name =Name, What_did_I_do_at_home = What_did_I_do_at_home, What_I_did_towards_my_goals =  What_I_did_towards_my_goals, What_did_I_learn_new=What_did_I_learn_new )
+                    
+            # saving all the data in the current object into the database
+            user_obj.save()
+         
+            return render(request, 'plan/makedailyupdate.html', {'user_obj': user_obj,'is_registered':True }) # Redirect after POST
+    else:
+        form = UpdateForm()  # an unboundform
+        #form = {}
+        return render(request, 'plan/makedailyupdate.html', {'form': form})
+
+
+
+def makeweeklyupdate(request):
+    if request.method == 'POST':  # if the form has been filled
+        form = Update1Form(request.POST)
+        Standard = request.POST.get('standard', '')
+        Name = request.POST.get('name', '')
+        goalcompleted = request.POST.get('goal', '')
+        How_do_I_feel_after_my_assessment = request.POST.get('How_do_I_feel_after_my_assessment', '')
+        What_I_will_do_different_next_week = request.POST.get('What_I_will_do_different_next_week', '')
+    
+#        date = request.POST.get('date', '')
+        if How_do_I_feel_after_my_assessment =='' or What_I_will_do_different_next_week =='' or Standard =='' or Name =='':
+           user_obj = Update1( Standard ='', Name ='', How_do_I_feel_after_my_assessment='', What_I_will_do_different_next_week='', goalcompleted='')
+               
+           return render(request, 'plan/makeweeklyupdate.html', {'user_obj': user_obj,'is_registered':False }) # Redirect after POST
+        else:
+            user_obj = Update1( Standard = Standard, Name =Name, How_do_I_feel_after_my_assessment = How_do_I_feel_after_my_assessment, What_I_will_do_different_next_week =  What_I_will_do_different_next_week, goalcompleted=goalcompleted)
+                    
+            # saving all the data in the current object into the database
+            user_obj.save()
+         
+            return render(request, 'plan/makeweeklyupdate.html', {'user_obj': user_obj,'is_registered':True }) # Redirect after POST
+    else:
+        form = Update1Form()  # an unboundform
+        #form = {}
+        return render(request, 'plan/makeweeklyupdate.html', {'form': form})
+
+
+
+

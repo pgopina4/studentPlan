@@ -1,0 +1,3 @@
+With the XMLHttpRequest object you can update parts of a web page, without reloading the whole page.
+
+The XMLHttpRequest object is used to exchange data with a server behind the scenes.

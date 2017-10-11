@@ -1,0 +1,32 @@
+
+<html>
+<body>
+{% if all_plan %}
+ 
+    <h1>Here is the plan for this week.</h1>
+
+<ul>
+   {% for user in all_plan %}
+ 
+	<p></p>
+	
+		<li> Name:{{ user.Name }} </li>
+		 	
+         <li>  Standard:{{ user.Standard  }} </li>
+		
+		  <li> Chapter:{{ user.Chapter  }} </li>
+		
+		  <li> Goal old1:{{ user.Goal_old1 }}</li>
+		  <li> Goal old2:{{ user.Goal_old2 }}</li>
+		  <li> Goal now1:{{ user.Goal_now1 }}</li>
+		  <li> Goal now2:{{ user.Goal_now2 }}</li>
+    
+    
+    {% endfor %}
+</ul>
+{#  In case  no user exists.  #}
+{% else %}
+<h3> No plan found.</h3>
+{% endif %}
+	</body>
+</html>

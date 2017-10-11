@@ -1,0 +1,30 @@
+
+<html>
+<title>Dynamic Drop Down List</title>
+
+<body>
+<table>
+<body>
+{% if all_Update %}
+ 
+    <h1>Here is the plan for this week.</h1>
+
+<ul>
+   {% for user in all_Update %}
+	 <tr>
+    <td>
+		  <li> {{ user.Name }} {{ user.Standard }} </li>
+		  <li> What did I do at home:{{ user.What_did_I_do_at_home }}</li>
+		  <li> What I did towards my goals:{{ user.What_I_did_towards_my_goals }}</li>
+     </tr>
+    </td>
+    
+    {% endfor %}
+</ul>
+{#  In case  no user exists.  #}
+{% else %}
+<h3> No plan found.</h3>
+{% endif %}
+	</table>
+		</body>
+		</html>

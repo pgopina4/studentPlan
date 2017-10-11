@@ -1,0 +1,45 @@
+<html>
+<body>
+{% if all_plan %}
+ 
+    <h4>Here is your plan for this week.</h4>
+
+<ul>
+   {% for user in all_plan %}
+ 
+		 <I>Chapter:{{ user.Chapter  }}</I>
+     		{% if user.Goal_old1 != ""  or  user.Goal_old2 != "" %}
+		<p> <B>Old</B>
+       		{% endif %}
+
+     		{% if user.Goal_old1 != "" %}
+		  <li> {{ user.Goal_old1 }}</li>
+       		{% endif %}
+     		{% if user.Goal_old2 != "" %}
+		  <li> {{ user.Goal_old2 }}</li>
+       		{% endif %}
+
+     		{% if user.Goal_now1 != ""  or  user.Goal_now2 != "" %}
+		<p><B> Now</B>
+       		{% endif %}
+
+     		{% if user.Goal_now1 != "" %}
+		  <li> {{ user.Goal_now1 }}</li>
+       		{% endif %}
+     		{% if user.Goal_now2 != "" %}
+		  <li> {{ user.Goal_now2 }}</li>
+       		{% endif %}
+     		{% if user.Goal_now3 != "" %}
+		  <li> {{ user.Goal_now3 }}</li>
+       		{% endif %}
+     		{% if user.Goal_now4 != "" %}
+		  <li> {{ user.Goal_now4 }}</li>
+       		{% endif %}
+    {% endfor %}
+</ul>
+{#  In case  no user exists.  #}
+{% else %}
+<h3> No plan found.</h3>
+{% endif %}
+	</body>
+</html>

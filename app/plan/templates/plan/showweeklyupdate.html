@@ -1,0 +1,25 @@
+
+<html>
+<title>Dynamic Drop Down List</title>
+<body>
+{% if all_Week %}
+ 
+    <h1>Here is the plan for this week.</h1>
+
+<ul>
+   {% for user in all_Week%}
+	 <tr>
+    <td>
+		  <li> {{ user.Name }} {{ user.Standard }} </li>
+		  <li> How do I feel after myassignment:{{ user.How_do_I_feel_after_my_assignment }}</li>
+		  <li> What I will do different next week:{{ user.What_I_will_do_different_next_week }}</li>
+     </tr>
+    
+    {% endfor %}
+</ul>
+{#  In case  no user exists.  #}
+{% else %}
+<h3> No plan found.</h3>
+{% endif %}
+		</body>
+		</html>

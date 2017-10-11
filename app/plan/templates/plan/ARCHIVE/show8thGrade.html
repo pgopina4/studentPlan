@@ -1,0 +1,29 @@
+
+<html>
+<body>
+{% if all_plan %}
+ 
+    <h1>Here is the plan for this week for 8th Grade.</h1>
+
+<table>
+<tr>
+<td> Name</td>
+<td> Goal</td>
+</tr>
+   {% for user in all_plan %}
+     {% if user.Standard == "Grade 8th" %}
+	<tr>
+ 
+           <td> {{ user.Name }} </td>
+	  <td> {{ user.Goal_old1 }}<br>
+		 {{ user.Goal_old2 }}</td>
+	</tr>    
+	</tr>    
+      {% endif %}
+    {% endfor %}
+{#  In case  no user exists.  #}
+{% else %}
+<h3> No plan found.</h3>
+{% endif %}
+	</body>
+</html>

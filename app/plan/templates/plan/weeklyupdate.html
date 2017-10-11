@@ -1,0 +1,149 @@
+<title>Dynamic Drop Down List</title>
+<body>
+<h3>Welcome to weekly update of your learning</h3>
+<table>
+<tr>
+<td width="650">
+{% if is_registered %}
+    <script>alert("You are successfully registered with Feedback: {{ user_obj.Feedback }}")</script> 
+{% else %}
+    <form action="{% url 'plan:weeklyupdate' %}" method="post">
+	{% csrf_token %}
+		<title>Create dynamic 3 dropdown list in javascript</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script language="javascript" type="text/javascript">
+               var global_standard = "9th";
+               var global_name = "Arham";
+
+		function urlRedirectTo(obj)
+		{
+						// alert('You reached last step and selected '+obj);
+		}
+		function dynamicdropdown_student(listindex){
+                   global_name = listindex;
+                   loadDoc();
+}
+
+		function dynamicdropdown(listindex)
+	{
+		document.getElementById("name").length = 0;
+                global_standard = listindex;
+		switch (listindex)
+		{
+			case "7th" :
+				document.getElementById("name").options[0] = new Option("Please select name in 7th grade","");
+				document.getElementById("name").options[1] = new Option("Abinaya","Abinaya");
+				document.getElementById("name").options[2] = new Option("Anisha","Anisha");
+				document.getElementById("name").options[3] = new Option("Aanthi","Aanthi");
+				document.getElementById("name").options[4] = new Option("Abisri","Abisri");
+				document.getElementById("name").options[5] = new Option("Aravindh","Aravindh");
+				document.getElementById("name").options[6] = new Option("Avinisha","Avinisha");
+				document.getElementById("name").options[7] = new Option("Gunasundari","Gunasundari");
+				document.getElementById("name").options[8] = new Option("Jeevanendam","Jeevanendam");
+				document.getElementById("name").options[9] = new Option("Janeni","Janeni");
+				document.getElementById("name").options[10] = new Option("Jayalakshmi","Jayalakshmi");
+				document.getElementById("name").options[11] = new Option("Larasem","Larasem");
+				document.getElementById("name").options[12] = new Option("Muralidharen","Muralidharen");
+				document.getElementById("name").options[13] = new Option("Pranavraj","Pranavraj");
+				document.getElementById("name").options[14] = new Option("Sindhu","Sindhu");
+				document.getElementById("name").options[15] = new Option("Sathish","Sathish");
+				document.getElementById("name").options[16] = new Option("Sivashakthi","Sivashakthi");
+				document.getElementById("name").options[17] = new Option("Vishal","Vishal"); 
+				document.getElementById("name").options[18] = new Option("Yuvanraj","Yuvanraj");         
+
+				break;
+
+			case "8th" :
+				document.getElementById("name").options[0] = new Option("Please select name in 8th grade","");
+				document.getElementById("name").options[1] = new Option("Abinash","Abinash");
+				document.getElementById("name").options[2] = new Option("Adithya","Adithya");
+				document.getElementById("name").options[3] = new Option("Agalya","Agalya");
+				document.getElementById("name").options[4] = new Option("Amudavalli","Amudavalli");
+				document.getElementById("name").options[5] = new Option("Ashweta","Ashweta");
+				document.getElementById("name").options[6] = new Option("Barani","Barani");
+				document.getElementById("name").options[7] = new Option("Divakar","Divakar");
+				document.getElementById("name").options[8] = new Option("Divya.B","Divya.B");
+				document.getElementById("name").options[9] = new Option("Divya.M","Divya.M");
+				document.getElementById("name").options[10] = new Option("Magendirapathi","Magendirapathi");
+				document.getElementById("name").options[11] = new Option("Navin","Navin");
+				document.getElementById("name").options[12] = new Option("Barani","Barani");
+				document.getElementById("name").options[13] = new Option("Nirmal","Nirmal");
+				document.getElementById("name").options[14] = new Option("Pavithra","Pavithra");
+				document.getElementById("name").options[15] = new Option("Shalyni","Shalyni");
+				document.getElementById("name").options[16] = new Option("Shushma","Shushma");
+				document.getElementById("name").options[17] = new Option("Thamizharasi","Thamizharasi");
+				document.getElementById("name").options[18] = new Option("Vikram","Vikram");
+
+
+				break;
+			case "9th" :
+				document.getElementById("name").options[0] = new Option("Please select framework","");
+				document.getElementById("name").options[1] = new Option("Lavanya","Lavanya");
+				document.getElementById("name").options[2] = new Option("Amsavalli","Amsavalli");
+				document.getElementById("name").options[3] = new Option("Abitha","Abitha");
+				document.getElementById("name").options[4] = new Option("Muthulakshi","Muthulakshi");
+				document.getElementById("name").options[5] = new Option("Punithavel","Punithavel");
+				document.getElementById("name").options[6] = new Option("Kabilan","Kabilan");
+				document.getElementById("name").options[7] = new Option("Velmurugan","Velmurugan");
+				document.getElementById("name").options[8] = new Option("Vignesh","Vignesh");
+				document.getElementById("name").options[9] = new Option("Hariharan","Hariharan");
+				document.getElementById("name").options[10] = new Option("Hamasundar","Hamasundar");
+				document.getElementById("name").options[11] = new Option("Karnan","Karnan");
+				document.getElementById("name").options[12] = new Option("Aruldeva","Aruldeva");
+				document.getElementById("name").options[13] = new Option("Iyyanar","Iyyanar");
+				break;        
+			default:
+				document.getElementById("name").options[0]=new Option("Please select name","");
+				break;
+		}
+		return true;
+ } 
+ function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+	document.getElementById("animptext").innerHTML = this.responseText;
+  };
+  string2send = "Standard="+global_standard+"&Name="+global_name;
+  xhttp.open("GET", "showdataSpecific?"+string2send, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // xhttp.send(string2send);
+  xhttp.send();
+} 
+    </script>
+        <div class="standard_div" id="standard_div">Please select your standard:
+            <select name="standard" class="required-entry" id="standard" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                <option value="">Select Standard</option>
+                <option value="7th">Grade 7th</option>
+                <option value="8th">Grade 8th</option>
+                <option value="9th">Grade 9th</option>
+            </select>
+        </div>
+
+        <div class="name_div" id="name_div">Please select your name:
+            <script type="text/javascript" language="JavaScript">
+                document.write('<select name="name" id="name" onchange="javascript: dynamicdropdown_student(this.options[this.selectedIndex].value);"><option value="">Please select student name</option></select>')
+            </script>
+            <noscript>
+                <select name="name" id="name" >
+
+                    <option value="">Please select name </option>
+                </select>
+            </noscript>
+        </div>    
+   <table>                     
+        <div class="animptext" id="animptext"></div>
+    {% for field in form %}
+       <tr><td>{{field.label_tag}}</td>
+		   <td>{{field}}</td></tr>
+    {% endfor %}
+    </table>
+
+    <input type="submit" value="Submit">
+</td>
+<td>
+image should come here
+</td>
+</tr>
+</table>
+
+{% endif %}

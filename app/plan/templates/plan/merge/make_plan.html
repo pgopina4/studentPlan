@@ -1,0 +1,340 @@
+{% if is_registered %}
+    <script>alert("You are successfully registered with Plan: {{ user_obj.planl }}")</script> </script>
+{% else %}
+    <form action="{% url 'plan:make_plan' %}" method="post">
+    {% csrf_token %}
+    <table cellpadding="20">
+        <title>Create dynamic 3 dropdown list in javascript</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <script language="javascript" type="text/javascript">
+        var global_standard = "9th";
+        function urlRedirectTo(obj)
+	{
+				// alert('You reached last step and selected '+obj);
+	}
+	function dynamicdropdown(listindex)
+            {
+                document.getElementById("goal1").length = 0;
+
+                document.getElementById("goal1").options[0]=new Option("Please select chapter","");
+                document.getElementById("chapter").length = 0;
+                global_standard = listindex;
+                switch (listindex)
+                {
+                    case "7th" :
+                        document.getElementById("chapter").options[0]=new Option("Please select chapter in 7th grade","");
+                        document.getElementById("chapter").options[1]=new Option("Real Number System","Real Number System");
+		        document.getElementById("chapter").options[2] = new Option("Algebraic Expressions","Algebraic Expressions");
+			document.getElementById("chapter").options[3] = new Option("Geometry_7th","Geometry_7th");
+			break;
+
+                    case "8th" :
+		        document.getElementById("chapter").options[0]=new Option("Please select chapter in 8th grade","");
+                        document.getElementById("chapter").options[1] = new Option("Life Mathematics","Life Mathematics");
+			document.getElementById("chapter").options[2] = new Option("Geometry_8th","Geometry_8th");
+			document.getElementById("chapter").options[3] = new Option("Data Handling","Data Handling");
+			break;
+                    case "9th" :
+	                document.getElementById("chapter").options[0]=new Option("Please select chapter in 9th grade","");
+                        document.getElementById("chapter").options[1] = new Option("Algebra","Algebra");
+			document.getElementById("chapter").options[2] = new Option("Trigonometry","Trigonometry");
+			document.getElementById("chapter").options[3] = new Option("Statistics","Statistics");
+			document.getElementById("chapter").options[4] = new Option("Practical Geometry","Practical Geometry");
+			break;
+                   
+                    default:
+                        document.getElementById("chapter").options[0]=new Option("Please select chapter","");
+                        break;
+                }
+                document.getElementById("name").length = 0
+                switch (listindex)
+                {
+                    case "7th" :
+                        document.getElementById("name").options[0] = new Option("Please select name in 7th grade","");
+                        document.getElementById("name").options[1] = new Option("Aanthi","Aanthi");
+		        document.getElementById("name").options[2] = new Option("Abinaya","Abinaya");
+			document.getElementById("name").options[3] = new Option("Anisha","Anisha");
+			document.getElementById("name").options[4] = new Option("Abisri","Abisri");
+                        document.getElementById("name").options[5] = new Option("Aravindh","Aravindh");
+                        document.getElementById("name").options[6] = new Option("Avinisha","Avinisha");
+                        document.getElementById("name").options[7] = new Option("Gunasundari","Gunasundari");
+                        document.getElementById("name").options[8] = new Option("Jeevanendam","Jeevanendam");
+                        document.getElementById("name").options[9] = new Option("Janeni","Janeni");
+                        document.getElementById("name").options[10] = new Option("Jayalakshmi","Jayalakshmi");
+                        document.getElementById("name").options[11] = new Option("Larasem","Larasem");
+                        document.getElementById("name").options[12] = new Option("Muralidharen","Muralidharen");
+                        document.getElementById("name").options[13] = new Option("Pranavraj","Pranavraj");
+                        document.getElementById("name").options[14] = new Option("Sindhu","Sindhu");
+                        document.getElementById("name").options[15] = new Option("Sathish","Sathish");
+                        document.getElementById("name").options[16] = new Option("Sivashakthi","Sivashakthi");
+			document.getElementById("name").options[17] = new Option("Vishal","Vishal"); 
+			document.getElementById("name").options[18] = new Option("Yuvanraj","Yuvanraj"); 	
+			break;
+                    case "8th" :
+                        document.getElementById("name").options[0] = new Option("Please select name your name","");
+                        document.getElementById("name").options[1] = new Option("Amirthavalli","Amirthavalli");
+		        document.getElementById("name").options[2] = new Option("Thamizharasi","Thamizharasi");
+			document.getElementById("name").options[3] = new Option("Abinesh","Abinesh");
+			document.getElementById("name").options[4] = new Option("Pavithra","Pavithra");
+                        document.getElementById("name").options[5] = new Option("Ashwethakamali","Ashwethakamali");
+                        document.getElementById("name").options[6] = new Option("Divya.M","Divya.M");
+                        document.getElementById("name").options[7] = new Option("Devakaran","Devakaran");
+                        document.getElementById("name").options[8] = new Option("Baranidharan","Baranidharan");
+                        document.getElementById("name").options[9] = new Option("Shalini","Shalini");
+                        document.getElementById("name").options[10] = new Option("Nirmal","Nirmal");
+                        document.getElementById("name").options[11] = new Option("Naveen","Naveen");
+			document.getElementById("name").options[12] = new Option("Magendrapathi","Magendrapathi");
+                        document.getElementById("name").options[13] = new Option("Adithyan","Adithyan");
+                        document.getElementById("name").options[14] = new Option("Sushma","Sushma");
+                        document.getElementById("name").options[15] = new Option("Agalya","Agalya");
+                        document.getElementById("name").options[16] = new Option("Divya.B","Divya.B");	
+			break;
+                    case "9th" :
+			document.getElementById("name").options[0]  = new Option("Please select your name","");
+			document.getElementById("name").options[1]  = new Option("Abitha","Abitha")
+			document.getElementById("name").options[2]  = new Option("Amsavalli","Amsavalli")
+			document.getElementById("name").options[3]  = new Option("Anandhi","Anandhi")
+			document.getElementById("name").options[4]  = new Option("Hariharan","Hariharan")
+			document.getElementById("name").options[5]  = new Option("Hemasundar","Hemasundar")
+			document.getElementById("name").options[6]  = new Option("Karnan","Karnan")
+			document.getElementById("name").options[7]  = new Option("Lavanya","Lavanya")
+			document.getElementById("name").options[8]  = new Option("Ranjitha","Ranjitha")
+			document.getElementById("name").options[9]  = new Option("Velmurgan","Velmurgan")
+			document.getElementById("name").options[10] = new Option("Kabilan","Kabilan")
+			document.getElementById("name").options[11] = new Option("Viknesh","Viknesh")
+			document.getElementById("name").options[12] = new Option("Iyyanar","Iyyanar")
+			document.getElementById("name").options[13] = new Option("Punithavel","Punithavel")
+			document.getElementById("name").options[13] = new Option("ArulDeva","ArulDeva")
+                        document.getElementById("name").options[13] = new Option("Sooriya","Sooriya")
+			break;							 
+                    default:
+                        document.getElementById("name").options[0]=new Option("Please select name","");
+                        break;
+                }
+
+                return true;
+            }
+       function dynamicdropdown_student(listvalue)
+         {
+	     var standard;
+             standard = "9th";
+	     // var querystring = window.location.querystring;
+	     // var myValue = querystring["useid"];
+             // document.getElementById("animptext").innerHTML = myvalue;
+             document.getElementById("imageplus").src = "../all_student_pics/".concat(standard).concat("/").concat(listvalue).concat(".jpg");
+         }         
+
+ 
+           function dynamicdropdownone(listindex)
+            {
+                document.getElementById("goal1").length = 0;
+                switch (listindex)
+                {
+                    case "Real Number System" :
+                    document.getElementById("goal1").options[0]=new Option("Please select goal1","");
+			document.getElementById("goal1").options[1] = new Option("I should be able to add Integers","I should be able to add Integers");
+			document.getElementById("goal1").options[2] = new Option("I should be able to subtract integers","I should be able to subtract integers");
+			document.getElementById("goal1").options[3]= new Option("I should be able to multiply integers","I should be able to multiply integers");
+			document.getElementById("goal1").options[4] = new Option("I should be able to divide integers","I should be able to divide integers");
+			document.getElementById("goal1").options[5] = new Option("I should know Division by zero is not defined","I should know Division by zero is not defined");
+			break;
+                    
+                    case "Algebraic Expressions" :
+                        document.getElementById("goal1").options[0] = new Option("I should know what Variables, Constants and Coefficients are","I should know what Variables, Constants and Coefficients are");
+			document.getElementById("goal1").options[1] = new Option("I should be able to Identify a Term","I should be able to Identify a Term");
+			document.getElementById("goal1").options[2] = new Option("I should be able to Identify an Algebraic Expression","I should be able to Identify an Algebraic Expression");
+			document.getElementById("goal1").options[3] = new Option("I should be able to Identify the of terms Coefficient","I should be able to Identify the of terms Coefficient");
+			break;
+                    case "Geometry_7th" :
+                        document.getElementById("goal1").options[0] = new Option("Types of angles : be able to differentiate right angle, obtuse angle, straight angle, reflex angle, complete angle, complementary angle, supplementary angle, adjacent angles","Types of angles : be able to differentiate right angle, obtuse angle, straight angle, reflex angle, complete angle, complementary angle, supplementary angle, adjacent angles");
+                        break;
+                    
+                    case "Life Mathematics" :
+			document.getElementById("goal1").options[0] = new Option("Please select framework","");
+                        document.getElementById("goal1").options[1] = new Option("I should be able to do Percentage.","I should be able to do Percentage.");
+			document.getElementById("goal1").options[2] = new Option("I should be able to calculate Profit.","I should be able to calculate Profit.");    						document.getElementById("goal1").options[3] = new Option("I should be able to calculate Loss.","I should be able to calculate Loss.");
+			document.getElementById("goal1").options[4] = new Option("I should be able to calculate Simple Interest.","I should be able to calculate Simple Interest."); 					break;
+						
+			case "Geometry_8th" :
+                        document.getElementById("goal1").options[0] = new Option("I should be able to understand and apply following concept in solving problems Altitude","I should be able to understand and apply following concept in solving problems Altitude");
+			document.getElementById("goal1").options[1] = new Option("I should be able to understand and apply following concept in solving problems Orthocentre","I should be able to understand and apply following concept in solving problems Orthocentre");  					    document.getElementById("goal1").options[2] = new Option("I should be able to understand and apply following concept in solving problems Incentre,Angle bisector ","I should be able to understand and apply following concept in solving problems Incentre,Angle bisector ");
+			document.getElementById("goal1").options[3] = new Option("I should be able to understand and apply following concept in solving problems , Median Centroid Altitude","I should be able to understand and apply following concept in solving problems , Median Centroid Altitude");
+			document.getElementById("goal1").options[4] = new Option("I should be able to find out the hypotenuse or height or base of a Right angle triangle using Pythagoras theorem.","I should be able to find out the hypotenuse or height or base of a Right angle triangle using Pythagoras theorem.");
+			document.getElementById("goal1").options[5] = new Option("I should be able to understand following concepts in Circle and apply it in solving problems Circle, Chord","I should be able to understand following concepts in Circle and apply it in solving problems Circle, Chord");
+			document.getElementById("goal1").options[6] = new Option("I should be able to understand following concepts in Circle and apply it in solving problems Diameter, Radius","I should be able to understand following concepts in Circle and apply it in solving problems Diameter, Radius");
+			document.getElementById("goal1").options[7] = new Option("I should be able to understand following concepts in Circle and apply it in solving problems Secant of a circle, Tangent","I should be able to understand following concepts in Circle and apply it in solving problems Secant of a circle, Tangent");
+			document.getElementById("goal1").options[8] = new Option("I should be able to understand following concepts in Circle and apply it in solving problemsArc, Segment and Sector","I should be able to understand following concepts in Circle and apply it in solving problemsArc, Segment and Sector");
+                        break;
+			case "Data Handling" :
+                        document.getElementById("goal1").options[0] = new Option("I should be able to draw Histogram and Frequency Polygon for Grouped Data. ","I should be able to draw Histogram and Frequency Polygon for Grouped Data. ");
+			document.getElementById("goal1").options[1] = new Option("I should be able to draw frequency polygon using histogram.","I should be able to draw frequency polygon using histogram.");
+			document.getElementById("goal1").options[2] = new Option("I should be able to draw frequency polygon without using histogram.","I should be able to draw frequency polygon without using histogram.");
+			document.getElementById("goal1").options[3] = new Option("I should be able todraw pie chart for given data.","I should be able todraw pie chart for given data.");
+			document.getElementById("goal1").options[4] = new Option("I should be able tocalculate Weighted Arithmetic Mean (W.A.M).","I should be able tocalculate Weighted Arithmetic Mean (W.A.M).");
+			document.getElementById("goal1").options[5] = new Option("I should be able to calculate Median for ungrouped data.","I should be able to calculate Median for ungrouped data.");
+			document.getElementById("goal1").options[6] = new Option("I should be able tocalculate Median. I should be able to calculate Median for ungrouped data.","I should be able tocalculate Median.I should be able to calculate Median for ungrouped data.");
+			document.getElementById("goal1").options[7] = new Option("I should be able tocalculate Mode. I should be able to calculate Mode for ungrouped data (Discrete data).","I should be able tocalculate Mode. I should be able to calculate Mode for ungrouped data (Discrete data).");
+			document.getElementById("goal1").options[8] = new Option("I should be able to calculate Mode for ungrouped data (Frequency distribution).","I should be able to calculate Mode for ungrouped data (Frequency distribution).");
+			break;
+                    case "Algebra" :
+			document.getElementById("goal1").options[0] = new Option("Please select framework","");
+			document.getElementById("goal1").options[1] = new Option("I should be able to classify polynomials and degrees.","I should be able toclassify polynomials and degrees.");
+                        document.getElementById("goal1").options[2] = new Option("I should be able to factorize a polynomial.","I should be able to factorize a polynomial.");
+			break;
+		case "Trigonometry" :
+                        document.getElementById("goal1").options[0] = new Option("Please select framework","");
+                        break;
+		case "Statistics" :
+                        document.getElementById("goal1").options[0] = new Option("Please select framework","");
+               	        break;
+                case "Practical Geometry" :
+                        document.getElementById("goal1").options[0] = new Option("Please select framework","");
+                        document.getElementById("goal1").options[1] = new Option("I should be able to construct perpendicular bisector.","I should be able to construct perpendicular bisector.");
+                        break;
+                    default:
+                        document.getElementById("goal1").options[0] = new Option("Please select framework version","");
+                        break;
+                }
+                document.getElementById("goal2").length = 0;
+                switch (listindex)
+                {
+                    case "Real Number System" :
+                        document.getElementById("goal2").options[0]=new Option("Please select goal1","");
+			document.getElementById("goal2").options[1] = new Option("I should be able to add Integers","I should be able to add Integers");
+			document.getElementById("goal2").options[2] = new Option("I should be able to subtract integers","I should be able to subtract integers");
+			document.getElementById("goal2").options[3]= new Option("I should be able to multiply integers","I should be able to multiply integers");
+			document.getElementById("goal2").options[4] = new Option("I should be able to divide integers","I should be able to divide integers");
+			document.getElementById("goal2").options[5] = new Option("I should know Division by zero is not defined","I should know Division by zero is not defined");
+			break;
+                    
+                    case "Algebraic Expressions" :
+                        document.getElementById("goal2").options[0] = new Option("I should know what Variables, Constants and Coefficients are","I should know what Variables, Constants and Coefficients are");
+			document.getElementById("goal2").options[1] = new Option("I should be able to Identify a Term","I should be able to Identify a Term");
+			document.getElementById("goal2").options[2] = new Option("I should be able to Identify an Algebraic Expression","I should be able to Identify an Algebraic Expression");
+			document.getElementById("goal2").options[3] = new Option("I should be able to Identify the of terms Coefficient","I should be able to Identify the of terms Coefficient");
+			break;
+                    case "Geometry_7th" :
+                        document.getElementById("goal2").options[0] = new Option("Types of angles : be able to differentiate right angle, obtuse angle, straight angle, reflex angle, complete angle, complementary angle, supplementary angle, adjacent angles","Types of angles : be able to differentiate right angle, obtuse angle, straight angle, reflex angle, complete angle, complementary angle, supplementary angle, adjacent angles");
+                        break;
+                    
+                    case "Life Mathematics" :
+			document.getElementById("goal2").options[0] = new Option("Please select framework","");
+                        document.getElementById("goal2").options[1] = new Option("I should be able to do Percentage.","I should be able to do Percentage.");
+			document.getElementById("goal2").options[2] = new Option("I should be able to calculate Profit.","I should be able to calculate Profit.");    						document.getElementById("goal1").options[3] = new Option("I should be able to calculate Loss.","I should be able to calculate Loss.");
+			document.getElementById("goal2").options[4] = new Option("I should be able to calculate Simple Interest.","I should be able to calculate Simple Interest."); 					break;
+						
+			case "Geometry_8th" :
+                        document.getElementById("goal2").options[0] = new Option("I should be able to understand and apply following concept in solving problems Altitude","I should be able to understand and apply following concept in solving problems Altitude");
+			document.getElementById("goal2").options[1] = new Option("I should be able to understand and apply following concept in solving problems Orthocentre","I should be able to understand and apply following concept in solving problems Orthocentre");  					    document.getElementById("goal1").options[2] = new Option("I should be able to understand and apply following concept in solving problems Incentre,Angle bisector ","I should be able to understand and apply following concept in solving problems Incentre,Angle bisector ");
+			document.getElementById("goal2").options[3] = new Option("I should be able to understand and apply following concept in solving problems , Median Centroid Altitude","I should be able to understand and apply following concept in solving problems , Median Centroid Altitude");
+			document.getElementById("goal2").options[4] = new Option("I should be able to find out the hypotenuse or height or base of a Right angle triangle using Pythagoras theorem.","I should be able to find out the hypotenuse or height or base of a Right angle triangle using Pythagoras theorem.");
+			document.getElementById("goal2").options[5] = new Option("I should be able to understand following concepts in Circle and apply it in solving problems Circle, Chord","I should be able to understand following concepts in Circle and apply it in solving problems Circle, Chord");
+			document.getElementById("goal2").options[6] = new Option("I should be able to understand following concepts in Circle and apply it in solving problems Diameter, Radius","I should be able to understand following concepts in Circle and apply it in solving problems Diameter, Radius");
+			document.getElementById("goal2").options[7] = new Option("I should be able to understand following concepts in Circle and apply it in solving problems Secant of a circle, Tangent","I should be able to understand following concepts in Circle and apply it in solving problems Secant of a circle, Tangent");
+			document.getElementById("goal2").options[8] = new Option("I should be able to understand following concepts in Circle and apply it in solving problemsArc, Segment and Sector","I should be able to understand following concepts in Circle and apply it in solving problemsArc, Segment and Sector");
+                        break;
+			case "Data Handling" :
+                        document.getElementById("goal2").options[0] = new Option("I should be able to draw Histogram and Frequency Polygon for Grouped Data. ","I should be able to draw Histogram and Frequency Polygon for Grouped Data. ");
+			document.getElementById("goal2").options[1] = new Option("I should be able to draw frequency polygon using histogram.","I should be able to draw frequency polygon using histogram.");
+			document.getElementById("goal2").options[2] = new Option("I should be able to draw frequency polygon without using histogram.","I should be able to draw frequency polygon without using histogram.");
+			document.getElementById("goal2").options[3] = new Option("I should be able todraw pie chart for given data.","I should be able todraw pie chart for given data.");
+			document.getElementById("goal2").options[4] = new Option("I should be able tocalculate Weighted Arithmetic Mean (W.A.M).","I should be able tocalculate Weighted Arithmetic Mean (W.A.M).");
+			document.getElementById("goal2").options[5] = new Option("I should be able to calculate Median for ungrouped data.","I should be able to calculate Median for ungrouped data.");
+			document.getElementById("goal2").options[6] = new Option("I should be able tocalculate Median. I should be able to calculate Median for ungrouped data.","I should be able tocalculate Median.I should be able to calculate Median for ungrouped data.");
+			document.getElementById("goal2").options[7] = new Option("I should be able tocalculate Mode. I should be able to calculate Mode for ungrouped data (Discrete data).","I should be able tocalculate Mode. I should be able to calculate Mode for ungrouped data (Discrete data).");
+			document.getElementById("goal2").options[8] = new Option("I should be able to calculate Mode for ungrouped data (Frequency distribution).","I should be able to calculate Mode for ungrouped data (Frequency distribution).");
+			break;
+                    case "Algebra" :
+			document.getElementById("goal2").options[0] = new Option("Please select framework","");
+			document.getElementById("goal2").options[1] = new Option("I should be able to classify polynomials and degrees.","I should be able toclassify polynomials and degrees.");
+                        document.getElementById("goal2").options[2] = new Option("I should be able to factorize a polynomial.","I should be able to factorize a polynomial.");
+			break;
+		case "Trigonometry" :
+                        document.getElementById("goal2").options[0] = new Option("Please select framework","");
+                        break;
+		case "Statistics" :
+                        document.getElementById("goal2").options[0] = new Option("Please select framework","");
+               	        break;
+                case "Practical Geometry" :
+                        document.getElementById("goal2").options[0] = new Option("Please select framework","");
+                        document.getElementById("goal2").options[1] = new Option("I should be able to construct perpendicular bisector.","I should be able to construct perpendicular bisector.");
+                        break;
+                    default:
+                        document.getElementById("goal2").options[0] = new Option("Please select framework version","");
+                        break;
+                }
+                return true;
+            }
+       </script>
+    </head>
+    <title>Dynamic Drop Down List</title>
+    <body>
+This is your weekly plan. Please select one topic and some goals under it.
+        <div class="standard_div" id="standard_div">Please select your standard:
+            <select name="standard" class="required-entry" id="standard" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                <option value="">Select Standard</option>
+                <option value="7th">Grade 7th</option>
+                <option value="8th">Grade 8th</option>
+                <option value="9th">Grade 9th</option>
+            </select>
+        </div>
+        <div class="animptext" id="animptext">This is just a text I want to change </div>
+        <div class="name_div" id="name_div">Please select your name:
+            <script type="text/javascript" language="JavaScript">
+                document.write('<select name="name" id="name" onchange="javascript: dynamicdropdown_student(this.options[this.selectedIndex].value);"><option value="">Please select student name</option></select>')
+            </script>
+            <noscript>
+                <select name="name" id="name" >
+                    <option value="">Please select name </option>
+                </select>
+            </noscript>
+        </div>
+
+         <img id="imageplus" height="200"  alt="" src="../all_student_pics/4th/Abinaya.JPG"></img> 
+
+        <div class="sub_category_div" id="sub_category_div">Please select a Chapter:
+            <script type="text/javascript" language="JavaScript">
+                document.write('<select name="chapter" id="chapter" onchange="javascript: dynamicdropdownone(this.options[this.selectedIndex].value);"><option value="">Please select a chapter</option></select>')
+            </script>
+            <noscript>
+
+                <select name="chapter" id="chapter" >
+                    <option value="">Please select chapter</option>
+                </select>
+            </noscript>
+        </div>
+
+        <div class="goal1_div" id="goal1_div">Please select the Old Goal:
+            <script type="text/javascript" language="JavaScript">
+                document.write('<select name="goal1" onchange="javascript: urlRedirectTo(this.options[this.selectedIndex].value);" id="goal1"><option value="">Please select framework version</option></select>')
+            </script> 
+       <noscript>
+                <select name="goal1" id="goal1" >
+                    <option value="">Please select old goal</option>
+                </select>
+            </noscript>
+        </div>
+
+        <div class="goal2_div" id="goal2_div">Please select the Old Goal:
+            <script type="text/javascript" language="JavaScript">
+                document.write('<select name="goal2" onchange="javascript: urlRedirectTo(this.options[this.selectedIndex].value);" id="goal2"><option value="">Please select framework version</option></select>')
+            </script>
+            <noscript>
+                <select name="goal2" id="goal2" >
+                    <option value="">Please select old goal</option>
+                </select>
+            </noscript>
+        </div>
+    </body>
+</html>                            
+    {% for field in form %}
+       <tr><td>{{field.label_tag}}</td><td>{{field}}</td></tr>
+    {% endfor %}
+    </table>
+
+
+    <input type="submit" value="Submit">
+    </form>
+{% endif %}
+
