@@ -198,98 +198,94 @@ def Progress(request):
 
 
 def CheckProgress(request):
-    standard = request.GET.get('Standard')
-    name = request.GET.get('Name')
-    start_date = datetime(2017, 10, 10)
-    all_plan = Post1.objects.filter(created_date__range=[start_date, datetime.now()], Standard=standard,Name=name)
-    all_goals = []
-    for user in all_plan:
-        #print(user.Chapter)
-        #print(user.Goal_now1)
-        goal_new_string = user.Goal_now1
-        goal_new_list = goal_new_string.split('\n')
-        chap_list = [user.Chapter, goal_new_list] #Builds Chapter list and goals heirarchy (Not unique)
-        all_goals.append(chap_list)
-    #print(all_goals)
-    #print("\n")
+    Standard = request.GET.get('Standard')
+    Name = request.GET.get('Name')
+    if Standard is None or Name is None:
+        return render(request, 'plan/checkProgress.html', {'unique_list': ' ','json_object':''})
+    else:
+        start_date = datetime(2017, 10, 10)
+        all_plan = Post1.objects.filter(created_date__range=[start_date, datetime.now()], Standard=Standard,Name=Name)
+        all_goals = []
+        for user in all_plan:
+            #print(user.Chapter)
+            #print(user.Goal_now1)
+            goal_new_string = user.Goal_now1
+            goal_new_list = goal_new_string.split('\n')
+            chap_list = [user.Chapter, goal_new_list] #Builds Chapter list and goals heirarchy (Not unique)
+            all_goals.append(chap_list)
+        #print(all_goals)
+        #print("\n")
 
-    #Now, Build Unique Chapter list
-    unique_list = []
-    for i in range(len(all_goals)):
-        if not [all_goals[i][0]] in unique_list:
-            unique_list.append([all_goals[i][0]])
-    
-    #Now, To the unique chapter list, associate unique goals in an heirarchical manner
-    for i in range(len(unique_list)):
-        for j in range(len(all_goals)):
-            if all_goals[j][0] == unique_list[i][0]: #Check if this is the right chapter for the associated goal
-                for l in range(len(all_goals[j][1])):
-                    if not all_goals[j][1][l] in unique_list[i]: #Check if the goal is already in the list under the associated chapter
-                        unique_list[i].append(all_goals[j][1][l])
+        #Now, Build Unique Chapter list
+        unique_list = []
+        for i in range(len(all_goals)):
+            if not [all_goals[i][0]] in unique_list:
+                unique_list.append([all_goals[i][0]])
+        
+        #Now, To the unique chapter list, associate unique goals in an heirarchical manner
+        for i in range(len(unique_list)):
+            for j in range(len(all_goals)):
+                if all_goals[j][0] == unique_list[i][0]: #Check if this is the right chapter for the associated goal
+                    for l in range(len(all_goals[j][1])):
+                        if not all_goals[j][1][l] in unique_list[i]: #Check if the goal is already in the list under the associated chapter
+                            unique_list[i].append(all_goals[j][1][l])
 
-    #For Testin Purposes - COMMENT IN PROD
-    # unique_list=[['Life Mathematics','I should know multiplication of fractions.','I should know multiplication, division of integers.']]
-    
-    #Now, Build a dummy Python Dictionary and convert it to a JSON object with the intent of passing it along to the render function
-    # dictexample = {'children':[{'children':[{'children':[],'data':{'description':'algebra l.o.1','$angularWidth':1000,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Classify Poly', 'name':'Classify Poly'},{'children':[],'data':{'description':'algebra l.o.2','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Factoriz * Poly','name':'Factorize * Poly'}],'data':{'description':'algebra chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Algebra','name':'Algebra'},{'children':[{'children':[],'data':{'description':'Stat l.o.1','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Statistics/Stat Graphs', 'name':'Stat. Graphs'}],'data':{'description':'Statistics chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Statistics','name':'Statistics'}],'data':{'$type':'none'},'id':'Source','name':'Grade 9 Math'}
-    
-    #Build the cumulative list of learning outcomes fo students from start of term - Data comes from Progress table and has marks alloted by the teacher as well
-    # standard = request.GET.get('Standard')
-    # name = request.GET.get('Name')
-    standard = "7th"
-    name = "Muralidharan"
-    N = 7
-    date_N_days_ago = datetime.now() - timedelta(days=N)
-    weekly_progress = Prog.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
-    cumulative_list=[]
+        #For Testin Purposes - COMMENT IN PROD
+        # unique_list=[['Life Mathematics','I should know multiplication of fractions.','I should know multiplication, division of integers.']]
+        
+        #dummy Python object that needs to be converted to json
+        # dictexample = {'children':[{'children':[{'children':[],'data':{'description':'algebra l.o.1','$angularWidth':1000,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Classify Poly', 'name':'Classify Poly'},{'children':[],'data':{'description':'algebra l.o.2','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Factoriz * Poly','name':'Factorize * Poly'}],'data':{'description':'algebra chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Algebra','name':'Algebra'},{'children':[{'children':[],'data':{'description':'Stat l.o.1','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Statistics/Stat Graphs', 'name':'Stat. Graphs'}],'data':{'description':'Statistics chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Statistics','name':'Statistics'}],'data':{'$type':'none'},'id':'Source','name':'Grade 9 Math'}
+        
+        #Build the cumulative list of learning outcomes fo students from start of term - Data comes from Progress table and has marks alloted by the teacher as well
+        # start_date = datetime(2017, 10, 16)
+        start_date = datetime(2017, 10, 10)
+        cumulative_progress = Prog.objects.filter(created_date__range=[start_date, datetime.now()], Standard=Standard,Name=Name)
+        cumulative_list=[]
+        for iterator in cumulative_progress:
+            progress_string = iterator.Outcomes
+            Assessment_Marks_list = iterator.Assessment_Marks.split(',')
+            progress_string = re.sub(r'\r','',progress_string)
+            progress_list=progress_string.split("],")[:-1]
+            k=0
+            for each in progress_list:
+                temp=each.split(';;',1)
+                chapter=re.sub('^\s+','',temp[0])
+                outcomes=temp[1].split('\n')
+                for i in range(len(outcomes)):
+                    cumulative_list.append([chapter,outcomes[i],Assessment_Marks_list[k]])
+                    k+=1
 
-    for iterator in weekly_progress:
-        progress_string = iterator.Outcomes
-        Assessment_Marks_list = iterator.Assessment_Marks.split(',')
-        progress_string = re.sub(r'\r','',progress_string)
-        progress_list=progress_string.split("],")[:-1]
-        k=0
-        for each in progress_list:
-            temp=each.split(';;',1)
-            chapter=re.sub('^\s+','',temp[0])
-            outcomes=temp[1].split('\n')
-            for i in range(len(outcomes)):
-                cumulative_list.append([chapter,outcomes[i],Assessment_Marks_list[k]])
-                k+=1
-    print(cumulative_list)
-    cumulative_list.reverse()
-    print(cumulative_list)
-    
-
-    toggle=0
-    #Convert data_7th (as an example) to JSON object
-    learn_outcome_dict=[]
-    chapter_dict = []
-    for i in (range(len(data_7th))):
+        # print(cumulative_list)
+        #Reverse the cumulative list so as to get the latest scores for any given learning outcome. 
+        cumulative_list.reverse()
+        standard_data = {"7th":data_7th,"8th":data_8th,"9th":data_9th}
+        sunburst_obj=standard_data[Standard]
+        chapter_color_toggle=0
         learn_outcome_dict=[]
-        TotalGrade=0
-        for j in (range(len(data_7th[i][1]))):
-            Grade = CheckLearningOutcome_inCumulativelist(data_7th[i][0],data_7th[i][1][j][0],cumulative_list)
-            if Grade>=0:
-                Grade_color="#a0"+hex(int(127 + (128/10*Grade))).split('x',1)[1]+"00"
-                TotalGrade+=Grade
-                learn_outcome_dict.append({'children':[],'data':{'description':data_7th[i][1][j][0],'$angularWidth':1000,'$color': Grade_color,'size': Grade},'id':'Source/'+data_7th[i][0]+'/'+data_7th[i][1][j][1],'name':data_7th[i][1][j][1]})
+        chapter_dict = []
+        for i in (range(len(sunburst_obj))):
+            learn_outcome_dict=[]
+            TotalGrade=0
+            for j in (range(len(sunburst_obj[i][1]))):
+                Grade = CheckLearningOutcome_inCumulativelist(sunburst_obj[i][0],sunburst_obj[i][1][j][0],cumulative_list)
+                if Grade>=0:
+                    Grade_color="#a0"+hex(int(127 + (128/10*Grade))).split('x',1)[1]+"00"
+                    TotalGrade+=Grade
+                    learn_outcome_dict.append({'children':[],'data':{'description':sunburst_obj[i][1][j][0],'$angularWidth':1000,'$color': Grade_color,'size': Grade},'id':'Source/'+sunburst_obj[i][0]+'/'+sunburst_obj[i][1][j][1],'name':sunburst_obj[i][1][j][1]})
+                else:
+                    learn_outcome_dict.append({'children':[],'data':{'description':sunburst_obj[i][1][j][0],'$angularWidth':1000,'$color':'#CDD4D3','size': 0},'id':'Source/'+sunburst_obj[i][0]+'/'+sunburst_obj[i][1][j][1],'name':sunburst_obj[i][1][j][1]})
+            if chapter_color_toggle == 1:
+                chapter_dict.append({'children':learn_outcome_dict,'data':{'description':sunburst_obj[i][0]+' Chapter','$angularWidth':1000,'$color':'#6699ff'},'id':'Source/'+sunburst_obj[i][0],'name':sunburst_obj[i][0]})
+                chapter_color_toggle=0
             else:
-                learn_outcome_dict.append({'children':[],'data':{'description':data_7th[i][1][j][0],'$angularWidth':1000,'$color':'#CDD4D3','size': 0},'id':'Source/'+data_7th[i][0]+'/'+data_7th[i][1][j][1],'name':data_7th[i][1][j][1]})
-        if toggle == 1:
-            chapter_dict.append({'children':learn_outcome_dict,'data':{'description':data_7th[i][0]+' Chapter','size': TotalGrade,'$angularWidth':700,'$color':'#6699ff'},'id':'Source/'+data_7th[i][0],'name':data_7th[i][0]})
-            toggle=0
-        else:
-            chapter_dict.append({'children':learn_outcome_dict,'data':{'description':data_7th[i][0]+' Chapter','size': TotalGrade,'$angularWidth':700,'$color':'#ff99aa'},'id':'Source/'+data_7th[i][0],'name':data_7th[i][0]})
-            toggle=1
-
-    final_dict={'children':chapter_dict,'data':{'$type':'none'},'id':'Source','name':'Grade 7 Math'}
-
-    #Convert dictionary to JSON Object
-    dictionarytoJson = json.dumps(final_dict)
-
-    #print("dictToJson",dictionarytoJson)
-    return render(request, 'plan/checkProgress.html', {'unique_list': unique_list,'json_object':dictionarytoJson})
+                chapter_dict.append({'children':learn_outcome_dict,'data':{'description':sunburst_obj[i][0]+' Chapter','$angularWidth':1000,'$color':'#ff99aa'},'id':'Source/'+sunburst_obj[i][0],'name':sunburst_obj[i][0]})
+                chapter_color_toggle=1
+        #encapsulating the above dictionary into a final dictionary
+        final_dict={'children':chapter_dict,'data':{'$type':'none'},'id':'Source','name':'Grade'+Standard+' Math'}
+        #Convert dictionary to JSON Object
+        dictionarytoJson = json.dumps(final_dict)
+        #print("dictToJson",dictionarytoJson)
+        return render(request, 'plan/checkProgress.html', {'unique_list': unique_list,'json_object':dictionarytoJson})
 
 
 def CheckLearningOutcome_inCumulativelist(chapter,lo,unique_list):

@@ -28,224 +28,224 @@ var Log = {
 
 function init(param){
   //init data
-  var json1 = {
-    "children": [
-       {
-         "children": [
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to classify polynomials and degrees.", 
-               "$angularWidth": 1000, 
-               "days": 111, 
-               "$color": "#B0AAF6", 
-               "size": 200
-             }, 
-             "id": "Source/Algebra/ClassifyPoly", 
-             "name": "Classify Poly"
-           }, 
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to factorize a polynomial.", 
-               "$angularWidth": 1000, 
-               "days": 2, 
-               "$color": "#B0AAF6", 
-               "size": 200
-             }, 
-             "id": "Source/Algebra/FactorizePoly", 
-             "name": "Factorize Poly"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to solve linear equations in one variable.", 
-               "$angularWidth": 1000, 
-               "days": 2, 
-               "$color": "#B0AAF6", 
-               "size": 200
-             }, 
-             "id": "Source/Algebra/linearOne", 
-             "name": "Linear One"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to solve linear equations in two variables.", 
-               "$angularWidth": 1000, 
-               "days": 2, 
-               "$color": "#B0AAF6", 
-               "size": 200
-             }, 
-             "id": "Source/Algebra/LinearTwo", 
-             "name": "Linear Two"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to know the algebraic identities and use them to solve problems", 
-               "$angularWidth": 1000, 
-               "days": 2, 
-               "$color": "#B0AAF6", 
-               "size": 200
-             }, 
-             "id": "Source/Algebra/AlgebraicEq", 
-             "name": "Alg. Equations"
-           }
-         ], 
-         "data": {
-           "description": "Algebra Chapter", 
-           "$color": "#dd3333", 
-           "days": 2, 
-           "$angularWidth": 7000, 
-           "size": 2000
-         }, 
-         "id": "Source/Algebra", 
-         "name": "Algebra"
-       }, 
-       {
-         "children": [
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to find Measures of Central Tendency : Mean, Median and Mode", 
-               "$angularWidth": 1500, 
-               "days": 3, 
-               "$color": "#B0AAF6", 
-               "size": 14952
-             }, 
-             "id": "Source/Statistics/Measures", 
-             "name": "Stat. Measures"
-           }, 
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to draw Histogram, Frequency Polygon", 
-               "$angularWidth": 1500, 
-               "days": 111, 
-               "$color": "#B0AAF6", 
-               "size": 5838
-             }, 
-             "id": "Source/Statistics/Graphs", 
-             "name": "Stat. Graphs"
-           }
-         ], 
-         "data": {
-           "description": "Statistics Chapter", 
-           "$color": "#DD3333", 
-           "days": 3, 
-           "$angularWidth": 4000, 
-           "size": 35549
-         }, 
-         "id": "Source/Statistics", 
-         "name": "Statistics"
-       },       
-       {
-         "children": [
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to construct a perpendicular bisector.", 
-               "$angularWidth": 1000, 
-               "days": 26, 
-               "$color": "#B0AAF6", 
-               "size": 8079
-             }, 
-             "id": "Source/PracGeo/Perpendicular", 
-             "name": "Perp. Bisector"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to construct incentre.", 
-               "$angularWidth": 1000, 
-               "days": 26, 
-               "$color": "#B0AAF6", 
-               "size": 8079
-             }, 
-             "id": "Source/PracGeo/Incentre", 
-             "name": "Incentre"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to construct a centroid.", 
-               "$angularWidth": 1000, 
-               "days": 26, 
-               "$color": "#B0AAF6", 
-               "size": 8079
-             }, 
-             "id": "Source/PracGeo/Centroid", 
-             "name": "Centroid"
-           }
-         ], 
-         "data": {
-           "description": "Practical Geometry Chapter", 
-           "$color": "#DD3333", 
-           "days": 26, 
-           "$angularWidth": 4000, 
-           "size": 8079
-         }, 
-         "id": "Source/PracGeo", 
-         "name": "Prac. Geometry"
-       }, 
-       {
-         "children": [
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to understand and use Trigonometric Ratios to solve problems.", 
-               "$angularWidth": 1500, 
-               "days": 112, 
-               "$color": "#B0AAF6", 
-               "size": 1200
-             }, 
-             "id": "Source/Trigonometry/TrigonometryRatios", 
-             "name": "Ratios"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to understand Trigonometric Ratios of Complementary Angles and solve them.", 
-               "$angularWidth": 1500, 
-               "days": 112, 
-               "$color": "#B0AAF6", 
-               "size": 1200
-             }, 
-             "id": "Source/Trigonometry/TrigonometryComplementary", 
-             "name": "Compl. Angles"
-           },
-           {
-             "children": [], 
-             "data": {
-               "description": "I should be able to know Trigonometric Table.", 
-               "$angularWidth": 1500, 
-               "days": 112, 
-               "$color": "#B0AAF6", 
-               "size": 1200
-             }, 
-             "id": "Source/Trigonometry/TrigonometryTable", 
-             "name": "Trig. Table"
-           } 
+  // var json1 = {
+  //   "children": [
+  //      {
+  //        "children": [
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to classify polynomials and degrees.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 111, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 200
+  //            }, 
+  //            "id": "Source/Algebra/ClassifyPoly", 
+  //            "name": "Classify Poly"
+  //          }, 
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to factorize a polynomial.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 2, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 200
+  //            }, 
+  //            "id": "Source/Algebra/FactorizePoly", 
+  //            "name": "Factorize Poly"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to solve linear equations in one variable.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 2, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 200
+  //            }, 
+  //            "id": "Source/Algebra/linearOne", 
+  //            "name": "Linear One"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to solve linear equations in two variables.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 2, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 200
+  //            }, 
+  //            "id": "Source/Algebra/LinearTwo", 
+  //            "name": "Linear Two"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to know the algebraic identities and use them to solve problems", 
+  //              "$angularWidth": 1000, 
+  //              "days": 2, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 200
+  //            }, 
+  //            "id": "Source/Algebra/AlgebraicEq", 
+  //            "name": "Alg. Equations"
+  //          }
+  //        ], 
+  //        "data": {
+  //          "description": "Algebra Chapter", 
+  //          "$color": "#dd3333", 
+  //          "days": 2, 
+  //          "$angularWidth": 7000, 
+  //          "size": 2000
+  //        }, 
+  //        "id": "Source/Algebra", 
+  //        "name": "Algebra"
+  //      }, 
+  //      {
+  //        "children": [
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to find Measures of Central Tendency : Mean, Median and Mode", 
+  //              "$angularWidth": 1500, 
+  //              "days": 3, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 14952
+  //            }, 
+  //            "id": "Source/Statistics/Measures", 
+  //            "name": "Stat. Measures"
+  //          }, 
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to draw Histogram, Frequency Polygon", 
+  //              "$angularWidth": 1500, 
+  //              "days": 111, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 5838
+  //            }, 
+  //            "id": "Source/Statistics/Graphs", 
+  //            "name": "Stat. Graphs"
+  //          }
+  //        ], 
+  //        "data": {
+  //          "description": "Statistics Chapter", 
+  //          "$color": "#DD3333", 
+  //          "days": 3, 
+  //          "$angularWidth": 4000, 
+  //          "size": 35549
+  //        }, 
+  //        "id": "Source/Statistics", 
+  //        "name": "Statistics"
+  //      },       
+  //      {
+  //        "children": [
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to construct a perpendicular bisector.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 26, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 8079
+  //            }, 
+  //            "id": "Source/PracGeo/Perpendicular", 
+  //            "name": "Perp. Bisector"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to construct incentre.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 26, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 8079
+  //            }, 
+  //            "id": "Source/PracGeo/Incentre", 
+  //            "name": "Incentre"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to construct a centroid.", 
+  //              "$angularWidth": 1000, 
+  //              "days": 26, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 8079
+  //            }, 
+  //            "id": "Source/PracGeo/Centroid", 
+  //            "name": "Centroid"
+  //          }
+  //        ], 
+  //        "data": {
+  //          "description": "Practical Geometry Chapter", 
+  //          "$color": "#DD3333", 
+  //          "days": 26, 
+  //          "$angularWidth": 4000, 
+  //          "size": 8079
+  //        }, 
+  //        "id": "Source/PracGeo", 
+  //        "name": "Prac. Geometry"
+  //      }, 
+  //      {
+  //        "children": [
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to understand and use Trigonometric Ratios to solve problems.", 
+  //              "$angularWidth": 1500, 
+  //              "days": 112, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 1200
+  //            }, 
+  //            "id": "Source/Trigonometry/TrigonometryRatios", 
+  //            "name": "Ratios"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to understand Trigonometric Ratios of Complementary Angles and solve them.", 
+  //              "$angularWidth": 1500, 
+  //              "days": 112, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 1200
+  //            }, 
+  //            "id": "Source/Trigonometry/TrigonometryComplementary", 
+  //            "name": "Compl. Angles"
+  //          },
+  //          {
+  //            "children": [], 
+  //            "data": {
+  //              "description": "I should be able to know Trigonometric Table.", 
+  //              "$angularWidth": 1500, 
+  //              "days": 112, 
+  //              "$color": "#B0AAF6", 
+  //              "size": 1200
+  //            }, 
+  //            "id": "Source/Trigonometry/TrigonometryTable", 
+  //            "name": "Trig. Table"
+  //          } 
            
-         ], 
-         "data": {
-           "description": "Trigonometry Chapter", 
-           "$color": "#DD3333", 
-           "days": 1, 
-           "$angularWidth": 4000, 
-           "size": 186221
-         }, 
-         "id": "Source/Trigonometry", 
-         "name": "Trigonometry"
-       }
-     ], 
-     "data": {
-       "$type": "none"
-     }, 
-     "id": "Source", 
-     "name": "Grade 9 Mathematics"
-   };
+  //        ], 
+  //        "data": {
+  //          "description": "Trigonometry Chapter", 
+  //          "$color": "#DD3333", 
+  //          "days": 1, 
+  //          "$angularWidth": 4000, 
+  //          "size": 186221
+  //        }, 
+  //        "id": "Source/Trigonometry", 
+  //        "name": "Trigonometry"
+  //      }
+  //    ], 
+  //    "data": {
+  //      "$type": "none"
+  //    }, 
+  //    "id": "Source", 
+  //    "name": "Grade 9 Mathematics"
+  //  };
   
       //end
     //init Sunburst
@@ -311,7 +311,7 @@ function init(param){
               html += "<br /><br /><b>Score: " + data.size + " / 10 </b>";
             }
             if("description" in data) {
-              html += "<br /><br /><b>Last commit was:</b><br /><pre>" + data.description + "</pre>";
+              html += "<br /><br /><b>Goal:</b><br /><pre>" + data.description + "</pre>";
             }
             $jit.id('inner-details').innerHTML = html;
             //hide tip

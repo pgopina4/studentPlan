@@ -6,7 +6,7 @@
     <tr><td width="800">
     <form action="{% url 'plan:make_plan' %}" method="post">
     {% csrf_token %}
-        <title>Create dynamic 3 dropdown list in javascript</title>
+        <title>Create Your Weekly Plane</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script language="javascript" type="text/javascript">
         var global_standard = "9th";
@@ -124,7 +124,7 @@
                         document.getElementById("name").options[0]=new Option("Please select name","");
                         break;
                 }
-
+                
                 return true;
             }
        function dynamicdropdown_student(listvalue)
@@ -135,6 +135,7 @@
 	     // var myValue = querystring["useid"];
              document.getElementById("animptext").innerHTML ="";
              document.getElementById("imageplus").src = "/static/plan/all_student_pics/".concat(global_standard).concat("/").concat(listvalue).concat(".jpg");
+             checkprogressparams();
          }         
 
  
@@ -352,6 +353,13 @@
 		}
                 return true;
             }
+
+            function checkprogressparams()
+            {
+                document.getElementById('progress-sunburst').src = '/plan/checkProgress?' + 'Standard=' + document.getElementById("standard").value + '&' + 'Name=' + document.getElementById("name").value;
+                console.log(document.getElementById('progress-sunburst').src);
+
+            }
        </script>
     </head>
     <title>Dynamic Drop Down List</title>
@@ -410,14 +418,21 @@
     {% endfor %}
     </table>
 
-   
-   <p>  <input type="submit" value="Submit">
- 
+    </td>
+    <td>
+             <img id="imageplus" alt="student_pic" src="{% static "plan/all_student_pics/Dummy.jpg" %}" align="center" width="200" style="vertical-align:bottom"/>
+    </td></tr>
+    <tr><td>
+    <p>  <input type="submit" value="Submit">
+    </tr>
+    <tr><td colspan="2">
+    <iframe src="/plan/checkProgress" id="progress-sunburst" width=1000px height=1000px >
+    </iframe>
+    </tr>
+
+    
 {% endif %}
-</td>
-<td>
-         <img id="imageplus" alt="student_pic" src="{% static "plan/all_student_pics/Dummy.jpg" %}" align="center" width="200" style="vertical-align:bottom"/>
-</td></tr>
 	</form>
+    
     </body>
 </html>                            
