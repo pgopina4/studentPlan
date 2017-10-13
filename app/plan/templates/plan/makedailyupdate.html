@@ -6,6 +6,7 @@
 <td width="650">
 {% if is_registered %}
     <script>alert("You are successfully registered with Update: {{ user_obj.Update }}")</script> 
+    <meta http-equiv="refresh" content="0; url=index" />
 {% else %}
     <form action="{% url 'plan:makedailyupdate' %}" method="post">
 	{% csrf_token %}

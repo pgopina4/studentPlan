@@ -6,6 +6,7 @@
 <td width="650">
 {% if is_registered %}
     <script>alert("You have successfully entered the marks: {{ user_obj.Update }}")</script> 
+    <meta http-equiv="refresh" content="0; url=index" />
 {% else %}
     <form action="{% url 'plan:Progress' %}" method="post">
 	{% csrf_token %}

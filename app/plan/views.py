@@ -280,7 +280,7 @@ def CheckProgress(request):
             chapter_dict.append({'children':learn_outcome_dict,'data':{'description':data_7th[i][0]+' Chapter','size': TotalGrade,'$angularWidth':700,'$color':'#6699ff'},'id':'Source/'+data_7th[i][0],'name':data_7th[i][0]})
             toggle=0
         else:
-            chapter_dict.append({'children':learn_outcome_dict,'data':{'description':data_7th[i][0]+' Chapter','size': TotalGrade,'$angularWidth':700,'$color':'#669980'},'id':'Source/'+data_7th[i][0],'name':data_7th[i][0]})
+            chapter_dict.append({'children':learn_outcome_dict,'data':{'description':data_7th[i][0]+' Chapter','size': TotalGrade,'$angularWidth':700,'$color':'#ff99aa'},'id':'Source/'+data_7th[i][0],'name':data_7th[i][0]})
             toggle=1
 
     final_dict={'children':chapter_dict,'data':{'$type':'none'},'id':'Source','name':'Grade 7 Math'}
