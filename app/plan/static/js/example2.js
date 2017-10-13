@@ -291,7 +291,7 @@ function init(param){
               html += "<b>Last modified:</b> " + data.days + " days ago";
             }
             if("size" in data) {
-              html += "<br /><b>File size:</b> " + Math.round(data.size / 1024) + "KB";
+              html += "<br /><b>Grade " + data.size  + " / 10 </b>";
             }
             tip.innerHTML = html;
           }
@@ -308,7 +308,7 @@ function init(param){
               html += "<b>Last modified:</b> " + data.days + " days ago";
             }
             if("size" in data) {
-              html += "<br /><br /><b>File size:</b> " + Math.round(data.size / 1024) + "KB";
+              html += "<br /><br /><b>Score: " + data.size + " / 10 </b>";
             }
             if("description" in data) {
               html += "<br /><br /><b>Last commit was:</b><br /><pre>" + data.description + "</pre>";
