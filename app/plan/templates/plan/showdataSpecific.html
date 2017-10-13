@@ -13,7 +13,7 @@
        		{% endif %}
 
      		{% if user.Goal_old1 != "" %}
-		  <li> {{ user.Goal_old1 }}</li>
+		  <li> {{ user.Goal_old1|linebreaksbr}}</li>
        		{% endif %}
      		{% if user.Goal_old2 != "" %}
 		  <li> {{ user.Goal_old2 }}</li>
@@ -24,7 +24,7 @@
        		{% endif %}
 
      		{% if user.Goal_now1 != "" %}
-		  <li> {{ user.Goal_now1 }}</li>
+		  <li> {{ user.Goal_now1|linebreaksbr }}</li>
        		{% endif %}
      		{% if user.Goal_now2 != "" %}
 		  <li> {{ user.Goal_now2 }}</li>
