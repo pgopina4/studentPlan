@@ -281,7 +281,7 @@ def CheckProgress(request):
                 chapter_dict.append({'children':learn_outcome_dict,'data':{'description':sunburst_obj[i][0]+' Chapter','$angularWidth':1000,'$color':'#ff99aa'},'id':'Source/'+sunburst_obj[i][0],'name':sunburst_obj[i][0]})
                 chapter_color_toggle=1
         #encapsulating the above dictionary into a final dictionary
-        final_dict={'children':chapter_dict,'data':{'$type':'none'},'id':'Source','name':'Grade'+Standard+' Math'}
+        final_dict={'children':chapter_dict,'data':{'$type':'none'},'id':'Source','name': Name + ' - Standard ' +  Standard}
         #Convert dictionary to JSON Object
         dictionarytoJson = json.dumps(final_dict)
         #print("dictToJson",dictionarytoJson)
