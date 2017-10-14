@@ -1,2 +1,4 @@
 /app/plan/static/plan/*
 /app/plan/__*
+*.pyc
+/app/db.sqlite3
