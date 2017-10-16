@@ -294,7 +294,7 @@ def CheckProgress(request):
         #Convert dictionary to JSON Object
         dictionarytoJson = json.dumps(final_dict)
         #print("dictToJson",dictionarytoJson)
-        return render(request, 'plan/checkProgress.html', {'unique_list': unique_list,'json_object':dictionarytoJson})
+        return render(request, 'plan/checkProgress.html', {'json_object':dictionarytoJson})
 
 
 def CheckLearningOutcome_inCumulativelist(chapter,lo,unique_list):
