@@ -69,7 +69,23 @@ def showdataSpecific(request):
     N = 7
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
-    return render(request, 'plan/showdataSpecific.html', {'all_plan': all_plan, })
+    return render(request, 'plan/showdataSpecific.html', {'all_plan': all_plan})
+
+def showdataSpecificMarks(request):
+    standard = request.GET.get('Standard')
+    name = request.GET.get('Name')
+    N = 7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
+    goals=[]
+    for i in all_plan:
+        goals.append(i.Goal_old1.split('\n'))
+        goals.append(i.Goal_now1.split('\n'))
+    goals_num=0
+    for i in range(len(goals)):
+        if(goals[i] != ['']):
+            goals_num+=len(goals[i])
+    return render(request, 'plan/showdataSpecificMarks.html', {'all_plan': all_plan, 'goals_num': goals_num})
 
 def showdataSpecificSimple(request):
     standard = request.GET.get('Standard')
@@ -237,8 +253,7 @@ def CheckProgress(request):
         # dictexample = {'children':[{'children':[{'children':[],'data':{'description':'algebra l.o.1','$angularWidth':1000,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Classify Poly', 'name':'Classify Poly'},{'children':[],'data':{'description':'algebra l.o.2','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Factoriz * Poly','name':'Factorize * Poly'}],'data':{'description':'algebra chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Algebra','name':'Algebra'},{'children':[{'children':[],'data':{'description':'Stat l.o.1','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Statistics/Stat Graphs', 'name':'Stat. Graphs'}],'data':{'description':'Statistics chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Statistics','name':'Statistics'}],'data':{'$type':'none'},'id':'Source','name':'Grade 9 Math'}
         
         #Build the cumulative list of learning outcomes fo students from start of term - Data comes from Progress table and has marks alloted by the teacher as well
-        # start_date = datetime(2017, 10, 16)
-        start_date = datetime(2017, 10, 10)
+        start_date = datetime(2017, 10, 16)
         cumulative_progress = Prog.objects.filter(created_date__range=[start_date, datetime.now()], Standard=Standard,Name=Name)
         cumulative_list=[]
         for iterator in cumulative_progress:

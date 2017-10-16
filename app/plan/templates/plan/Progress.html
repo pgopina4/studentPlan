@@ -101,7 +101,7 @@
   document.getElementById("animptext").innerHTML = this.responseText;
   };
   string2send = "Standard="+global_standard+"&Name="+global_name;
-  xhttp.open("GET", "showdataSpecific?"+string2send, true);
+  xhttp.open("GET", "showdataSpecificMarks?"+string2send, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   // xhttp.send(string2send);
   xhttp.send();

@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^show9thGrade$', views.show9thGrade, name='show9thGrade'),
     url(r'^showdataSpecific$', views.showdataSpecific, name='showdataSpecific'),
     url(r'^showdataSpecificSimple$', views.showdataSpecificSimple, name='showdataSpecificSimple'),
+    url(r'^showdataSpecificMarks$', views.showdataSpecificMarks, name='showdataSpecificMarks'),
     url(r'^showdata$', views.showdata, name='showdata'),
     url(r'^makedailyupdate$', views.makedailyupdate, name='makedailyupdate'),
     url(r'^showdailyupdate$', views.showdailyupdate, name='showdailyupdate'),
