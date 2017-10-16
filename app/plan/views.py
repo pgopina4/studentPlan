@@ -219,36 +219,30 @@ def CheckProgress(request):
     if Standard is None or Name is None:
         return render(request, 'plan/checkProgress.html', {'unique_list': ' ','json_object':''})
     else:
-        start_date = datetime(2017, 10, 10)
-        all_plan = Post1.objects.filter(created_date__range=[start_date, datetime.now()], Standard=Standard,Name=Name)
-        all_goals = []
-        for user in all_plan:
-            #print(user.Chapter)
-            #print(user.Goal_now1)
-            goal_new_string = user.Goal_now1
-            goal_new_list = goal_new_string.split('\n')
-            chap_list = [user.Chapter, goal_new_list] #Builds Chapter list and goals heirarchy (Not unique)
-            all_goals.append(chap_list)
-        #print(all_goals)
-        #print("\n")
-
-        #Now, Build Unique Chapter list
-        unique_list = []
-        for i in range(len(all_goals)):
-            if not [all_goals[i][0]] in unique_list:
-                unique_list.append([all_goals[i][0]])
+        # start_date = datetime(2017, 10, 10)
+        # all_plan = Post1.objects.filter(created_date__range=[start_date, datetime.now()], Standard=Standard,Name=Name)
+        # all_goals = []
+        # for user in all_plan:
+        #     #print(user.Chapter)
+        #     #print(user.Goal_now1)
+        #     goal_new_string = user.Goal_now1
+        #     goal_new_list = goal_new_string.split('\n')
+        #     chap_list = [user.Chapter, goal_new_list] #Builds Chapter list and goals heirarchy (Not unique)
+        #     all_goals.append(chap_list)
+        # #Now, Build Unique Chapter list
+        # unique_list = []
+        # for i in range(len(all_goals)):
+        #     if not [all_goals[i][0]] in unique_list:
+        #         unique_list.append([all_goals[i][0]])
         
-        #Now, To the unique chapter list, associate unique goals in an heirarchical manner
-        for i in range(len(unique_list)):
-            for j in range(len(all_goals)):
-                if all_goals[j][0] == unique_list[i][0]: #Check if this is the right chapter for the associated goal
-                    for l in range(len(all_goals[j][1])):
-                        if not all_goals[j][1][l] in unique_list[i]: #Check if the goal is already in the list under the associated chapter
-                            unique_list[i].append(all_goals[j][1][l])
+        # #Now, To the unique chapter list, associate unique goals in an heirarchical manner
+        # for i in range(len(unique_list)):
+        #     for j in range(len(all_goals)):
+        #         if all_goals[j][0] == unique_list[i][0]: #Check if this is the right chapter for the associated goal
+        #             for l in range(len(all_goals[j][1])):
+        #                 if not all_goals[j][1][l] in unique_list[i]: #Check if the goal is already in the list under the associated chapter
+        #                     unique_list[i].append(all_goals[j][1][l])
 
-        #For Testin Purposes - COMMENT IN PROD
-        # unique_list=[['Life Mathematics','I should know multiplication of fractions.','I should know multiplication, division of integers.']]
-        
         #dummy Python object that needs to be converted to json
         # dictexample = {'children':[{'children':[{'children':[],'data':{'description':'algebra l.o.1','$angularWidth':1000,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Classify Poly', 'name':'Classify Poly'},{'children':[],'data':{'description':'algebra l.o.2','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Factoriz * Poly','name':'Factorize * Poly'}],'data':{'description':'algebra chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Algebra','name':'Algebra'},{'children':[{'children':[],'data':{'description':'Stat l.o.1','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Statistics/Stat Graphs', 'name':'Stat. Graphs'}],'data':{'description':'Statistics chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Statistics','name':'Statistics'}],'data':{'$type':'none'},'id':'Source','name':'Grade 9 Math'}
         
