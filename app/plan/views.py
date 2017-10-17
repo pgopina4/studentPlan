@@ -118,6 +118,26 @@ def show9thGrade(request):
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="9th")
     return render(request, 'plan/showdata.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
 
+def show7thTeacher(request):
+    students_of_a_grade = allstudent.objects.filter(Standard="7th")
+    N =7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="7th")
+    return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+def show8thTeacher(request):
+    students_of_a_grade = allstudent.objects.filter(Standard="8th")
+    N =7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="8th")
+    return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+
+def show9thTeacher(request):
+    students_of_a_grade = allstudent.objects.filter(Standard="9th")
+    N =7
+    date_N_days_ago = datetime.now() - timedelta(days=N)
+    all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="9th")
+    return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+
 def showdailyupdate(request):
     all_Update = Update.objects.all()
     return render(request, 'plan/showdailyupdate.html', {'all_Update': all_Update, })

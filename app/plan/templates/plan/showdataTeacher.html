@@ -1,0 +1,33 @@
+<html>
+<body>
+<style>
+table, th, td {
+    border: 1px solid black;
+}</style>
+<h1>Here is the plan for this week.</h1>
+<table>
+{% if students_of_a_grade %}
+  {% for student in students_of_a_grade %}
+     	  <tr><td> {{student.Name}} </td>
+		<td>
+           {% for user in all_plan %}
+        	{%if student.Name == user.Name %}	
+			<b>Chapter: {{user.Chapter}}</b><br>
+			{% if user.Goal_old1 != "" %}
+				<div><b>Old Goals</b><br>
+				{{user.Goal_old1 | linebreaksbr }}<br>
+			{%endif%}
+			{% if user.Goal_now1 != "" %}
+				<b>Now Goals</b><br>
+				{{user.Goal_now1 | linebreaksbr }}<br></div>
+			{%endif%}
+			<br>
+			{% endif %}
+			
+           {% endfor %}
+        </tr>
+   {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>
