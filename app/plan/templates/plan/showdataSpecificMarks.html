@@ -10,7 +10,8 @@
 		 <I>Chapter:{{ user.Chapter  }}</I>
      		{% if user.Goal_old1 != ""  or  user.Goal_old2 != "" %}
 		 <p><B>Old Goals</B>
-       		{% endif %}
+       		
+        {% endif %}
 
      		{% if user.Goal_old1 != "" %}
 		  <li> {{ user.Goal_old1|linebreaksbr}}</li>
