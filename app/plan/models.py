@@ -11,8 +11,7 @@ class Post1(models.Model):
     Goal_now2 =  models.TextField(default='')
     Goal_now3 =  models.TextField(default='')
     Goal_now4 =  models.TextField(default='')	
-    created_date = models.DateTimeField(
-            default=timezone.now)
+    created_date = models.DateTimeField(default=timezone.now)
     
  #   def publish(self):
      #   self.published_date = timezone.now()

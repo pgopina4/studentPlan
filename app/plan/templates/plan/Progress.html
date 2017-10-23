@@ -4,6 +4,12 @@
 <table>
 <tr>
 <td width="650">
+
+  
+{% if is_wrong_data %}
+    <script>alert("Error: You have entered incorrect number of Marks. Please enter the same number corresponding to the number of goals.")</script> 
+    <meta http-equiv="refresh" content="0; url=Progress" />
+{% endif %}
 {% if is_registered %}
     <script>alert("You have successfully entered the marks: {{ user_obj.Update }}")</script> 
     <meta http-equiv="refresh" content="0; url=index" />
