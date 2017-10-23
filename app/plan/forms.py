@@ -7,6 +7,7 @@ from .models import Progress
 from django.utils import timezone
 
 
+
 class PostForm(forms.Form):
     Name = forms.CharField(max_length=200)
     Standard = forms.CharField(max_length=200)
@@ -15,7 +16,7 @@ class PostForm(forms.Form):
     How_did_I_feel_after_my_assessment = forms.CharField(max_length=200,label="How did I feel after my assessment")
     Work_I_did_at_home = forms.CharField(max_length=200,label="What I did at home yesterday")
     What_can_I_do_now_that_I_could_not_do_last_week = forms.CharField(max_length=200,label="What can I do now that I could not do last week")
-
+    
    
 
 class UpdateForm(forms.Form):

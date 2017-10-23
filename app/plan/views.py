@@ -81,6 +81,7 @@ def showdataSpecificMarks(request):
     for i in all_plan:
         goals.append(i.Goal_old1.split('\n'))
         goals.append(i.Goal_now1.split('\n'))
+    global goals_num
     goals_num=0
     for i in range(len(goals)):
         if(goals[i] != ['']):
@@ -192,20 +193,22 @@ def Progress(request):
         Standard = request.POST.get('standard', '')
         Name = request.POST.get('name', '')
         Assessment_Marks = request.POST.get('Assessment_Marks', '')
+        Marks_num = Assessment_Marks.count(",")+1 
         Outcomes = request.POST.get('Outcomes', '')
-        print('Outcome = '+Outcomes)
+        # print('Outcome = '+Outcomes)
         # print(Standard,Name,Assessment_Marks)
 #        date = request.POST.get('date', '')
-        if Assessment_Marks =='' or Standard =='' or Name =='':
+        # print('Marks_num = ',Marks_num,goals_num )
+
+        if Marks_num != goals_num:
+           return render(request, 'plan/Progress.html', {'is_wrong_data':True }) # Redirect after POST
+        elif Assessment_Marks =='' or Standard =='' or Name =='':
            user_obj = Prog( Standard ='', Name ='', Assessment_Marks='')
-            
            return render(request, 'plan/Progress.html', {'user_obj': user_obj,'is_registered':False }) # Redirect after POST
         else:
             user_obj = Prog( Standard = Standard, Name = Name, Assessment_Marks= Assessment_Marks, Outcomes = Outcomes)
-                    
             # saving all the data in the current object into the database
             user_obj.save()
-         
             return render(request, 'plan/Progress.html', {'user_obj': user_obj,'is_registered':True }) # Redirect after POST
     else:
         form = ProgressForm()  # an unboundform
@@ -303,5 +306,4 @@ def CheckLearningOutcome_inCumulativelist(chapter,lo,unique_list):
             if re.sub('^\s+','',unique_list[i][1]) == lo:
                 return int(unique_list[i][2])
                 break
-    return -1        
-
+    return -1  
