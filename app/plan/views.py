@@ -74,7 +74,7 @@ def showdataSpecific(request):
 def showdataSpecificMarks(request):
     standard = request.GET.get('Standard')
     name = request.GET.get('Name')
-    N = 7
+    N = 12
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
     goals=[]
@@ -91,7 +91,7 @@ def showdataSpecificMarks(request):
 def showdataSpecificSimple(request):
     standard = request.GET.get('Standard')
     name = request.GET.get('Name')
-    N = 7
+    N = 12
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
     return render(request, 'plan/showdataSpecificSimple.html', {'all_plan': all_plan, })
@@ -121,20 +121,20 @@ def show9thGrade(request):
 
 def show7thTeacher(request):
     students_of_a_grade = allstudent.objects.filter(Standard="7th")
-    N =7
+    N = 12
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="7th")
     return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
 def show8thTeacher(request):
     students_of_a_grade = allstudent.objects.filter(Standard="8th")
-    N =7
+    N = 12
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="8th")
     return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
 
 def show9thTeacher(request):
     students_of_a_grade = allstudent.objects.filter(Standard="9th")
-    N =7
+    N = 12
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="9th")
     return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
