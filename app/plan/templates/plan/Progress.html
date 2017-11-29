@@ -12,7 +12,7 @@
 {% endif %}
 {% if is_registered %}
     <script>alert("You have successfully entered the marks: {{ user_obj.Update }}")</script> 
-    <meta http-equiv="refresh" content="0; url=index" />
+    <meta http-equiv="refresh" content="0; url=Progress" />
 {% else %}
     <form action="{% url 'plan:Progress' %}" method="post">
 	{% csrf_token %}
@@ -124,6 +124,13 @@
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   // xhttp.send(string2send);
   xhttp.send();
+  checkprogressparams();
+}
+function checkprogressparams()
+{
+    document.getElementById('progress-sunburst').src = '/plan/checkProgress?' + 'Standard=' + document.getElementById("standard").value + '&' + 'Name=' + document.getElementById("name").value;
+    console.log(document.getElementById('progress-sunburst').src);
+
 } 
 
     </script>
@@ -172,6 +179,10 @@
          <img id="imageplus" alt="student_pic" src="{% static "plan/all_student_pics/Dummy.jpg" %}" align="center" width="200" style="vertical-align:bottom"/>
 </td>
 </tr>
+<tr><td colspan="2">
+<iframe src="/plan/checkProgress" id="progress-sunburst" width=1000px height=1000px >
+</iframe>
+</td></tr>
 </table>
 
 {% endif %}
