@@ -1,3 +1,4 @@
+<!-- Web Page to allow instructors to grade students on their learning outcomes. -->
 <title>Dynamic Drop Down List</title>
 <body>
 <h3>Please enter the marks of each outcome</h3>
@@ -101,6 +102,7 @@
 		return true;
  } 
 
+  // Function to load the learning outcomes and present it in a clear concise manner
   function loadDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -113,7 +115,7 @@
   xhttp.send();
   loadDoc1();
 } 
-			
+	// Function to load the learning outcomes into the browser and populate a text box after which the contents can be sent back to the database so as to populate the progress table.		
   function loadDoc1() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -126,6 +128,7 @@
   xhttp.send();
   checkprogressparams();
 }
+// Function to load the sunburst based on the parameters selected (like name and standard)
 function checkprogressparams()
 {
     document.getElementById('progress-sunburst').src = '/plan/checkProgress?' + 'Standard=' + document.getElementById("standard").value + '&' + 'Name=' + document.getElementById("name").value;

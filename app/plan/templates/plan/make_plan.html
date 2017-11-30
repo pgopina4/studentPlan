@@ -315,6 +315,7 @@
     return true;
     }
 
+    // Function to load the sunburst based on the parameters selected (like name and standard)
     function checkprogressparams()
     {
         document.getElementById('progress-sunburst').src = '/plan/checkProgress?' + 'Standard=' + document.getElementById("standard").value + '&' + 'Name=' + document.getElementById("name").value;
@@ -386,6 +387,7 @@
     <tr><td>
     <p>  <input type="submit" value="Submit">
     </tr>
+    <!-- Add the iframe for the checkProgress.html file -->
     <tr><td colspan="2">
     <iframe src="/plan/checkProgress" id="progress-sunburst" width=1000px height=1000px >
     </iframe>

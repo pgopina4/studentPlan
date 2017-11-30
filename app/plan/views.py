@@ -63,6 +63,7 @@ def make_plan(request):
 #    all_plan = Post1.objects.filter(Standard=standard,Name=name)
  #   return render(request, 'plan/showdataSpecific.html', {'all_plan': all_plan, })
 
+#  Displays chapters and associated outcomes of the student in their make_plan, daily update and weekly update view
 def showdataSpecific(request):
     standard = request.GET.get('Standard')
     name = request.GET.get('Name')
@@ -71,6 +72,7 @@ def showdataSpecific(request):
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard=standard,Name=name)
     return render(request, 'plan/showdataSpecific.html', {'all_plan': all_plan})
 
+#  Displays chapters and associated outcomes of the student in the past 12 days in the Progress Template so that teachers can evaluate it
 def showdataSpecificMarks(request):
     standard = request.GET.get('Standard')
     name = request.GET.get('Name')
@@ -88,6 +90,7 @@ def showdataSpecificMarks(request):
             goals_num+=len(goals[i])
     return render(request, 'plan/showdataSpecificMarks.html', {'all_plan': all_plan, 'goals_num': goals_num})
 
+# To enable storing the outcomes in the required format in the database
 def showdataSpecificSimple(request):
     standard = request.GET.get('Standard')
     name = request.GET.get('Name')
@@ -99,12 +102,15 @@ def showdataSpecificSimple(request):
 def showdata(request):
     all_plan = Post1.objects.all()
     return render(request, 'plan/showdata.html', {'all_plan': all_plan, })
+
+# For printing out goals for each child at the start of the week
 def show7thGrade(request):
     students_of_a_grade = allstudent.objects.filter(Standard="7th")
     N =7
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="7th")
     return render(request, 'plan/showdata.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+
 def show8thGrade(request):
     students_of_a_grade = allstudent.objects.filter(Standard="8th")
     N =7
@@ -119,12 +125,14 @@ def show9thGrade(request):
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="9th")
     return render(request, 'plan/showdata.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
 
+# For printing out goals for each child to be sent to the teacher so that they are able to evaluate the assessments accordingly
 def show7thTeacher(request):
     students_of_a_grade = allstudent.objects.filter(Standard="7th")
     N = 12
     date_N_days_ago = datetime.now() - timedelta(days=N)
     all_plan = Post1.objects.filter(created_date__range=[date_N_days_ago, datetime.now()], Standard="7th")
     return render(request, 'plan/showdataTeacher.html', {'all_plan': all_plan, 'students_of_a_grade':students_of_a_grade})
+
 def show8thTeacher(request):
     students_of_a_grade = allstudent.objects.filter(Standard="8th")
     N = 12
@@ -215,12 +223,9 @@ def Progress(request):
         Assessment_Marks = request.POST.get('Assessment_Marks', '')
         Marks_num = Assessment_Marks.count(",")+1 
         Outcomes = request.POST.get('Outcomes', '')
-        # print('Outcome = '+Outcomes)
-        # print(Standard,Name,Assessment_Marks)
-#        date = request.POST.get('date', '')
-        # print('Marks_num = ',Marks_num,goals_num )
 
         if Marks_num != goals_num:
+           # if the number of marks entered does not match with the number of goals, then: 
            return render(request, 'plan/Progress.html', {'is_wrong_data':True }) # Redirect after POST
         elif Assessment_Marks =='' or Standard =='' or Name =='':
            user_obj = Prog( Standard ='', Name ='', Assessment_Marks='')
@@ -232,7 +237,6 @@ def Progress(request):
             return render(request, 'plan/Progress.html', {'user_obj': user_obj,'is_registered':True }) # Redirect after POST
     else:
         form = ProgressForm()  # an unboundform
-        #form = {}
         return render(request, 'plan/Progress.html', {'form': form})
 
 
@@ -242,30 +246,6 @@ def CheckProgress(request):
     if Standard is None or Name is None:
         return render(request, 'plan/checkProgress.html', {'unique_list': ' ','json_object':''})
     else:
-        # start_date = datetime(2017, 10, 10)
-        # all_plan = Post1.objects.filter(created_date__range=[start_date, datetime.now()], Standard=Standard,Name=Name)
-        # all_goals = []
-        # for user in all_plan:
-        #     #print(user.Chapter)
-        #     #print(user.Goal_now1)
-        #     goal_new_string = user.Goal_now1
-        #     goal_new_list = goal_new_string.split('\n')
-        #     chap_list = [user.Chapter, goal_new_list] #Builds Chapter list and goals heirarchy (Not unique)
-        #     all_goals.append(chap_list)
-        # #Now, Build Unique Chapter list
-        # unique_list = []
-        # for i in range(len(all_goals)):
-        #     if not [all_goals[i][0]] in unique_list:
-        #         unique_list.append([all_goals[i][0]])
-        
-        # #Now, To the unique chapter list, associate unique goals in an heirarchical manner
-        # for i in range(len(unique_list)):
-        #     for j in range(len(all_goals)):
-        #         if all_goals[j][0] == unique_list[i][0]: #Check if this is the right chapter for the associated goal
-        #             for l in range(len(all_goals[j][1])):
-        #                 if not all_goals[j][1][l] in unique_list[i]: #Check if the goal is already in the list under the associated chapter
-        #                     unique_list[i].append(all_goals[j][1][l])
-
         #dummy Python object that needs to be converted to json
         # dictexample = {'children':[{'children':[{'children':[],'data':{'description':'algebra l.o.1','$angularWidth':1000,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Classify Poly', 'name':'Classify Poly'},{'children':[],'data':{'description':'algebra l.o.2','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Algebra/Factoriz * Poly','name':'Factorize * Poly'}],'data':{'description':'algebra chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Algebra','name':'Algebra'},{'children':[{'children':[],'data':{'description':'Stat l.o.1','$angularWidth':1000,'days':3,'$color':'#B0AAF6','size':200},'id':'Source/Statistics/Stat Graphs', 'name':'Stat. Graphs'}],'data':{'description':'Statistics chapter','$color':'#dd3333','days':2,'$angularWidth':700,'size':2000},'id':'Source/Statistics','name':'Statistics'}],'data':{'$type':'none'},'id':'Source','name':'Grade 9 Math'}
         
@@ -290,22 +270,28 @@ def CheckProgress(request):
         # print(cumulative_list)
         #Reverse the cumulative list so as to get the latest scores for any given learning outcome. 
         cumulative_list.reverse()
+        
+        # Get the appropriate goals corresponding to the standards from variables in output.py -- next line
         standard_data = {"7th":data_7th,"8th":data_8th,"9th":data_9th}
         sunburst_obj=standard_data[Standard]
         chapter_color_toggle=0
         learn_outcome_dict=[]
         chapter_dict = []
+
+        # Build the sunburst JSON object for goals first, then chapters, and then append into a final_dict
         for i in (range(len(sunburst_obj))):
             learn_outcome_dict=[]
             TotalGrade=0
             for j in (range(len(sunburst_obj[i][1]))):
                 Grade = CheckLearningOutcome_inCumulativelist(sunburst_obj[i][0],sunburst_obj[i][1][j][0],cumulative_list)
                 if Grade>=0:
+                    # To enable appropriate coloring for goals based on their associated grades from progress table
                     Grade_color="#a0"+hex(int(127 + (128/10*Grade))).split('x',1)[1]+"00"
                     TotalGrade+=Grade
                     learn_outcome_dict.append({'children':[],'data':{'description':sunburst_obj[i][1][j][0],'$angularWidth':1000,'$color': Grade_color,'size': Grade},'id':'Source/'+sunburst_obj[i][0]+'/'+sunburst_obj[i][1][j][1],'name':sunburst_obj[i][1][j][1]})
                 else:
                     learn_outcome_dict.append({'children':[],'data':{'description':sunburst_obj[i][1][j][0],'$angularWidth':1000,'$color':'#CDD4D3','size': 0},'id':'Source/'+sunburst_obj[i][0]+'/'+sunburst_obj[i][1][j][1],'name':sunburst_obj[i][1][j][1]})
+            # To enable alternate chapters to be colored appropriately. 
             if chapter_color_toggle == 1:
                 chapter_dict.append({'children':learn_outcome_dict,'data':{'description':sunburst_obj[i][0]+' Chapter','$angularWidth':1000,'$color':'#6699ff'},'id':'Source/'+sunburst_obj[i][0],'name':sunburst_obj[i][0]})
                 chapter_color_toggle=0
@@ -316,7 +302,6 @@ def CheckProgress(request):
         final_dict={'children':chapter_dict,'data':{'$type':'none'},'id':'Source','name': Name + ' - Standard ' +  Standard}
         #Convert dictionary to JSON Object
         dictionarytoJson = json.dumps(final_dict)
-        #print("dictToJson",dictionarytoJson)
         return render(request, 'plan/checkProgress.html', {'json_object':dictionarytoJson})
 
 
